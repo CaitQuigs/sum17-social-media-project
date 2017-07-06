@@ -4,6 +4,9 @@ class TweetsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   # GET /tweets
   # GET /tweets.json
+  
+  include TweetsHelper
+  
   def index
     @tweets = Tweet.order(id: :desc)
   end
@@ -24,8 +27,10 @@ class TweetsController < ApplicationController
 
   # POST /tweets
   # POST /tweets.json
+  
   def create
-    @tweet = Tweet.new(tweet_params)
+    @tweet = Tweet.create(tweet_params)
+    @tweet = get_tagged(@tweet)
 
     respond_to do |format|
       if @tweet.save

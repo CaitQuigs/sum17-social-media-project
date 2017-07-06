@@ -39,12 +39,20 @@ class EpicenterController < ApplicationController
      #our parameters are received as an array of hashes, so we have to dig down into the layers #tweets_path to get our data. 
     @tweet.message = "#{params[:tweet][:message]}"
     @tweet.user_id = "#{params[:tweet][:user_id].to_i}"
+    
+    
+    
+    
     @tweet.save
     redirect_to root_path
 
 
 
   end  
+
+def tag_tweets
+  @tag = Tag.find(params[:id])
+end
 
 
   def all_users
