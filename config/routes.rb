@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
+  
   root 'epicenter#feed'
    
    # post '/' => "epicenter#feed", as: "root"
-
-
-   post 'epicenter/epi_tweet'
  
   get 'show_user' => 'epicenter#show_user'
 
@@ -14,11 +12,12 @@ Rails.application.routes.draw do
 
   get 'all_users' => 'epicenter#all_users'
   
+  post 'epicenter/epi_tweet'
+  
   get 'tag_tweets' => 'epicenter#tag_tweets'
 
   resources :tweets
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
 
 end
