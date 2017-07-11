@@ -24,15 +24,17 @@ class EpicenterController < ApplicationController
   def now_following
   	current_user.following.push(params[:id].to_i)
   	current_user.save
+  	redirect_back(fallback_location: root_path)
 
-    redirect_to show_user_path(id: params[:id])
+    # redirect_to show_user_path(id: params[:id])
   end
 
   def unfollow
   	current_user.following.delete(params[:id].to_i)
   	current_user.save
+  	redirect_back(fallback_location: root_path)
 
-  	redirect_to show_user_path(id: params[:id]) 
+  # 	redirect_to show_user_path(id: params[:id]) 
   end
 
 
